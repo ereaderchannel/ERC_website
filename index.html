@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mood now</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <title>Ambient Sounds</title>
     <style>
         body {
             display: flex;
@@ -14,250 +16,92 @@
             font-family: Arial, sans-serif;
         }
 
-        h1 {
-  margin: 0 auto;
-  text-align: center;
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 520px;
+        justify-content: center;
+    }
+
+    .image-container {
+    width: 250px;
+    height: 250px;
+    padding: ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-<link rel="shortcut icon" type="image/jpg" href="/favicon.ico" />
-
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
-
-.title-container {
-  text-align: center;
-  margin-bottom: 1rem;
+.image-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            width: 50%;
-            gap: 10px;
-        }
-        .image-box {
-            position: relative;
-            width: 200px; /* add this line to set the width to 200 pixels */
-            height: 200px; /* add this line to set the height to 200 pixels */
-            cursor: pointer;
-            overflow: hidden;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-        }
-        .image-box img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200px; /* add this line to set the width to 200 pixels */
-            height: 200px; /* add this line to set the height to 200 pixels */
-            object-fit: cover;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        .image-box:hover img {
-            opacity: 1;
-        }
-        .image-box h3 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            margin: 0;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.7);
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #333;
-        }
 
-
-        .music-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
-  margin-top: 20px;
-}
-
-.play-pause button {
-  background-color: transparent;
-  border: none;
-  color: #333;
-  font-size: 1.5rem;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.play-pause button:hover {
-  color: #666;
-}
-
-.volume {
-  display: flex;
-  align-items: center;
-  color: #333;
-  font-size: 1.2rem;
-}
-
-.volume label {
-  margin-right: 10px;
-}
-
-.volume input[type="range"] {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 5px;
-  margin: 0 10px;
-  background-color: #ddd;
-  outline: none;
-}
-
-.volume input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background-color: #333;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.mini-player {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
-  margin-top: 20px;
-  background-color: #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.track-info {
-  flex: 1 1 0;
-}
-
-.track-name {
-  margin: 0;
-  font-size: 1.2rem;
+.image-title {
+  position: absolute;
+  color: white;
   font-weight: bold;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  bottom: 0;
+  width: 100%;
+  text-align: center; /* center the text horizontally */
+  display: flex; /* use flexbox to center the text vertically */
+  justify-content: center; /* center the text vertically */
+  align-items: center; /* center the text vertically */
 }
 
-.player-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+</style>
+<script>
+    let playing = null;
 
-.player-controls button {
-  background-color: transparent;
-  border: none;
-  color: #333;
-  font-size: 1.5rem;
-  margin-right: 10px;
-  cursor: pointer;
-}
+    function toggleSound(element, soundId) {
+        const audio = document.getElementById(soundId);
+        if (playing && playing !== audio) {
+            playing.pause();
+            playing.currentTime = 0;
+        }
 
-.player-controls button:hover {
-  color: #666;
-}
-    </style>
-
-    <script>
-       function playMusic(id) {
-    stopAllAudio();
-    let audio = document.getElementById(id);
-    audio.currentTime = 0;
-    audio.play();
-}
-
-function showMusicIcon(el) {
-    el.querySelector(".music-icon").style.display = "block";
-}
-
-function hideMusicIcon(el) {
-    el.querySelector(".music-icon").style.display = "none";
-}
-
-function imageClick(el, audioId) {
-  let audio = document.getElementById(audioId);
-  
-  if (el.classList.contains("selected")) {
-    // If the element is already selected, pause the audio and deselect the element
-    el.classList.remove("selected");
-    hideMusicIcon(el);
-    audio.pause();
-  } else {
-    // Otherwise, select the element, show the music icon, and play/resume the audio
-    document.querySelectorAll(".image-box").forEach(function(item) {
-      item.classList.remove("selected");
-      hideMusicIcon(item);
-    });
-    el.classList.add("selected");
-    showMusicIcon(el);
-    audio.play();
-  }
-}
-
-function stopAudio(id) {
-    let audio = document.getElementById(id);
-    audio.pause();
-    audio.currentTime = 0;
-}
-
-function stopAllAudio() {
-  let audioElements = document.getElementsByTagName("audio");
-  
-  for (let audio of audioElements) {
-    audio.pause();
-    audio.currentTime = 0;
-  }
-}
-
-function resumeMusic(id) {
-  let audio = document.getElementById(id);
-  
-  if (audio.paused) {
-    audio.play();
-  }
-}
-
-
-    </script>
-
+        if (audio.paused) {
+            audio.play();
+            playing = audio;
+            element.classList.add("selected");
+        } else {
+            audio.pause();
+            element.classList.remove("selected");
+        }
+    }
+</script>
 </head>
-
 <body>
-
     <div class="container">
-        <div class="image-box" onclick="imageClick(this, 'street-audio')">
-            <img src="street.jpg" alt="Street">
-            <h3>Street</h3>
-            <span class="music-icon">&#9835;</span>
+        <div class="image-container" onclick="toggleSound(this, 'street-sound')">
+            <img src="street.jpg" alt="street">
+            <span class="image-title">Street</span>
         </div>
-        <div class="image-box" onclick="imageClick(this, 'coffee-shop-audio')">
-            <img src="coffee_shop.jpg" alt="Coffee Shop">
-            <h3>Coffee Shop</h3>
-            <span class="music-icon">&#9835;</span>
+        <div class="image-container" onclick="toggleSound(this, 'coffee-shop-sound')">
+            <img src="coffee_shop.jpg" alt="coffee shop">
+            <span class="image-title">Coffee Shop</span>
         </div>
-        <div class="image-box" onclick="imageClick(this, 'forest-audio')">
-            <img src="forest.jpg" alt="Forest">
-            <h3>Forest</h3>
-            <span class="music-icon">&#9835;</span>
+        <div class="image-container" onclick="toggleSound(this, 'forest-sound')">
+            <img src="forest.jpg" alt="forest">
+            <span class="image-title">Forest</span>
         </div>
-        <div class="image-box" onclick="imageClick(this, 'rainy-days-audio')">
-            <img src="rainy_days.jpg" alt="Rainy Days">
-            <h3>Rainy Days</h3>
-            <span class="music-icon">&#9835;</span>
+        <div class="image-container" onclick="toggleSound(this, 'rainy-days-sound')">
+            <img src="rainy_days.jpg" alt="rainy days">
+            <span class="image-title">Rainy Days</span>
         </div>
     </div>
-    
-    <audio id="street-audio" src="street_ambient.mp3" preload="auto" loop></audio>
-    <audio id="coffee-shop-audio" src="coffee_shop_ambient.mp3" preload="auto" loop></audio>
-    <audio id="forest-audio" src="forest_ambient.mp3" preload="auto" loop></audio>
-    <audio id="rainy-days-audio" src="rainy_days_ambient.mp3" preload="auto" loop></audio>
-
+    <audio id="street-sound" src="street.mp3" loop></audio>
+    <audio id="coffee-shop-sound" src="coffee-shop.mp3" loop></audio>
+    <audio id="forest-sound" src="forest.mp3" loop></audio>
+    <audio id="rainy-days-sound" src="rainy-days.mp3" loop></audio>
 </body>
-
 </html>
