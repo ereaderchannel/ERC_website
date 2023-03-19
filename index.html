@@ -15,9 +15,14 @@
         }
 
         h1 {
-        margin-bottom: 1rem;
-        text-align: center;
-    }
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
         .container {
             display: flex;
@@ -29,8 +34,8 @@
         }
         .image-box {
             position: relative;
-            width: calc(50% - 10px);
-            padding-bottom: calc(50% - 10px);
+            width: 200px; /* add this line to set the width to 200 pixels */
+            height: 200px; /* add this line to set the height to 200 pixels */
             cursor: pointer;
             overflow: hidden;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -39,8 +44,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 200px; /* add this line to set the width to 200 pixels */
+            height: 200px; /* add this line to set the height to 200 pixels */
             object-fit: cover;
             opacity: 0.8;
             transition: opacity 0.3s;
@@ -61,7 +66,100 @@
             font-weight: bold;
             color: #333;
         }
+
+
+        .music-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.play-pause button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.play-pause button:hover {
+  color: #666;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.volume label {
+  margin-right: 10px;
+}
+
+.volume input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  margin: 0 10px;
+  background-color: #ddd;
+  outline: none;
+}
+
+.volume input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mini-player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin-top: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.track-info {
+  flex: 1 1 0;
+}
+
+.track-name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-controls button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.player-controls button:hover {
+  color: #666;
+}
     </style>
+
     <script>
        function playMusic(id) {
     stopAllAudio();
@@ -79,19 +177,23 @@ function hideMusicIcon(el) {
 }
 
 function imageClick(el, audioId) {
-    if (el.classList.contains("selected")) {
-        el.classList.remove("selected");
-        hideMusicIcon(el);
-        stopAudio(audioId);
-    } else {
-        document.querySelectorAll(".image-box").forEach(function(item) {
-            item.classList.remove("selected");
-            hideMusicIcon(item);
-        });
-        el.classList.add("selected");
-        showMusicIcon(el);
-        playMusic(audioId);
-    }
+  let audio = document.getElementById(audioId);
+  
+  if (el.classList.contains("selected")) {
+    // If the element is already selected, pause the audio and deselect the element
+    el.classList.remove("selected");
+    hideMusicIcon(el);
+    audio.pause();
+  } else {
+    // Otherwise, select the element, show the music icon, and play/resume the audio
+    document.querySelectorAll(".image-box").forEach(function(item) {
+      item.classList.remove("selected");
+      hideMusicIcon(item);
+    });
+    el.classList.add("selected");
+    showMusicIcon(el);
+    audio.play();
+  }
 }
 
 function stopAudio(id) {
@@ -101,14 +203,27 @@ function stopAudio(id) {
 }
 
 function stopAllAudio() {
-    let audioElements = document.getElementsByTagName("audio");
-    for (let audio of audioElements) {
-        audio.pause();
-        audio.currentTime = 0;
-    }
+  let audioElements = document.getElementsByTagName("audio");
+  
+  for (let audio of audioElements) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
 }
+
+function resumeMusic(id) {
+  let audio = document.getElementById(id);
+  
+  if (audio.paused) {
+    audio.play();
+  }
+}
+
+
     </script>
+
 </head>
+
 <body>
 
     <div class="container">
@@ -133,11 +248,12 @@ function stopAllAudio() {
             <span class="music-icon">&#9835;</span>
         </div>
     </div>
-
+    
     <audio id="street-audio" src="street_ambient.mp3" preload="auto" loop></audio>
     <audio id="coffee-shop-audio" src="coffee_shop_ambient.mp3" preload="auto" loop></audio>
     <audio id="forest-audio" src="forest_ambient.mp3" preload="auto" loop></audio>
     <audio id="rainy-days-audio" src="rainy_days_ambient.mp3" preload="auto" loop></audio>
 
 </body>
+
 </html>
