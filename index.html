@@ -14,9 +14,17 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            background-color: rgb(255, 255, 255);
         }
 
     .container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 400px;
+        justify-content: center;
+    }
+
+    .page-title {
         display: flex;
         flex-wrap: wrap;
         width: 400px;
@@ -41,7 +49,6 @@
     width: 100%;
     height: 100%;
 }
-
 
 .image-title {
   position: absolute;
@@ -81,27 +88,49 @@
 </script>
 </head>
 <body>
+
     <div class="container">
+
+        <div class="page-title">
+            <h1>what's your mood?</h1>
+        </div>
+
         <div class="image-container" onclick="toggleSound(this, 'street-sound')">
             <img src="street.jpg" alt="street">
             <span class="image-title">Street</span>
         </div>
+        
         <div class="image-container" onclick="toggleSound(this, 'coffee-shop-sound')">
             <img src="coffee_shop.jpg" alt="coffee shop">
             <span class="image-title">Coffee Shop</span>
         </div>
+        
         <div class="image-container" onclick="toggleSound(this, 'forest-sound')">
             <img src="forest.jpg" alt="forest">
             <span class="image-title">Forest</span>
         </div>
+        
         <div class="image-container" onclick="toggleSound(this, 'rainy-days-sound')">
             <img src="rainy_days.jpg" alt="rainy days">
             <span class="image-title">Rainy Days</span>
         </div>
+
+        <div class="image-container" onclick="toggleSound(this, 'ocean-sound')">
+            <img src="ocean.jpg" alt="ocean">
+            <span class="image-title">Ocean</span>
+        </div>
+
+        <div class="image-container" onclick="toggleSound(this, 'club-sound')">
+            <img src="club.jpg" alt="club">
+            <span class="image-title">Club</span>
+        </div>
+
     </div>
     <audio id="street-sound" src="street.mp3" loop></audio>
     <audio id="coffee-shop-sound" src="coffee-shop.mp3" loop></audio>
     <audio id="forest-sound" src="forest.mp3" loop></audio>
     <audio id="rainy-days-sound" src="rainy-days.mp3" loop></audio>
+    <audio id="ocean-sound" src="ocean.mp3" loop></audio>
+    <audio id="club-sound" src="club.mp3" loop></audio>
 </body>
 </html>
