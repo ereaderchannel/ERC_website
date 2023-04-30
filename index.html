@@ -3,134 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <title>Mood now</title>
+    <title>E Reader Channel</title>
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background-color: rgb(255, 255, 255);
         }
-
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        width: 400px;
-        justify-content: center;
-    }
-
-    .page-title {
-        display: flex;
-        flex-wrap: wrap;
-        width: 400px;
-        justify-content: center;
-    }
-
-    .image-container {
-    width: 150px;
-    height: 150px;
-    padding: ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.image-container img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.image-title {
-  position: absolute;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 8px;
-  bottom: 0;
-  width: 100%;
-  text-align: center; /* center the text horizontally */
-  display: flex; /* use flexbox to center the text vertically */
-  justify-content: center; /* center the text vertically */
-  align-items: center; /* center the text vertically */
-}
-
-</style>
-<script>
-    let playing = null;
-
-    function toggleSound(element, soundId) {
-        const audio = document.getElementById(soundId);
-        if (playing && playing !== audio) {
-            playing.pause();
-            playing.currentTime = 0;
+        img {
+            width: 300px;
+            margin: 1rem 0;
         }
-
-        if (audio.paused) {
-            audio.play();
-            playing = audio;
-            element.classList.add("selected");
-        } else {
-            audio.pause();
-            element.classList.remove("selected");
+        .rounded-square {
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 0rem;
+            text-align: center;
+            background-color: lightg;
         }
-    }
-</script>
+        .full-width {
+            width: 400px;
+            margin-bottom: 1rem;
+        }
+        .half-width {
+            width: calc(50% - 0.7rem);
+            margin-bottom: 1rem;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 400px;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .text-block {
+            width: 400px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 0rem 0;
+        }
+    </style>
 </head>
 <body>
-
-    <div class="container">
-
-        <div class="page-title">
-            <h1>what's your mood?</h1>
-        </div>
-
-        <div class="image-container" onclick="toggleSound(this, 'street-sound')">
-            <img src="street.jpg" alt="street">
-            <span class="image-title">Street</span>
-        </div>
-        
-        <div class="image-container" onclick="toggleSound(this, 'coffee-shop-sound')">
-            <img src="coffee_shop.jpg" alt="coffee shop">
-            <span class="image-title">Coffee Shop</span>
-        </div>
-        
-        <div class="image-container" onclick="toggleSound(this, 'forest-sound')">
-            <img src="forest.jpg" alt="forest">
-            <span class="image-title">Forest</span>
-        </div>
-        
-        <div class="image-container" onclick="toggleSound(this, 'rainy-days-sound')">
-            <img src="rainy_days.jpg" alt="rainy days">
-            <span class="image-title">Rainy Days</span>
-        </div>
-
-        <div class="image-container" onclick="toggleSound(this, 'ocean-sound')">
-            <img src="ocean.jpg" alt="ocean">
-            <span class="image-title">Ocean</span>
-        </div>
-
-        <div class="image-container" onclick="toggleSound(this, 'club-sound')">
-            <img src="club.jpg" alt="club">
-            <span class="image-title">Club</span>
-        </div>
-
+    <!-- <img src="logo.png" alt="Logo"> -->
+    <h1><i>E Reader Channel</i></h1>
+    <!-- <div class="text-block">
+      <p>This website is sponsered by XXX and XXX.</p>
+    </div> -->
+    
+    <div class="rounded-square full-width">
+        <a href="best_ereaders_2023.html"><p>Best E-readers in 2023</p></a>
     </div>
-    <audio id="street-sound" src="street.mp3" loop></audio>
-    <audio id="coffee-shop-sound" src="coffee-shop.mp3" loop></audio>
-    <audio id="forest-sound" src="forest.mp3" loop></audio>
-    <audio id="rainy-days-sound" src="rainy-days.mp3" loop></audio>
-    <audio id="ocean-sound" src="ocean.mp3" loop></audio>
-    <audio id="club-sound" src="club.mp3" loop></audio>
-</body>
-</html>
+
+    <div class="row">
+      <div class="rounded-square half-width">
+        <a href="accessories.html"><p>Accessories</p></a>
+      </div>
+      
+      <div class="rounded-square half-width">
+        <a href="fonts.html"><p>Fonts</p></a>
+      </div>
+  </div>
+
+    <!-- <div class="rounded-square full-width">
+      <a href="boox_unofficial_guide.html"><p>Boox Unofficial Guide</p></a>
+    </div> -->
+    
+    <div class="rounded-square full-width">
+      <a href="note_templates_wallpapers.html"><p>Note Templates & Wallpapers</p></a>
+    </div>
+    
+    <!-- <div class="row">
+      <div class="rounded-square half-width">
+        <a href="fonts.html"><p>Fonts</p></a>
+      </div>
+      
+      <div class="rounded-square half-width">
+        <a href="dictionary.html"><p>Dictionary</p></a>
+      </div>
+  </div> -->
+    
+    <!-- <div class="row">
+      <div class="rounded-square half-width">
+        <a href="apps.html"><p>Apps</p></a>
+      </div>
+  
+      <div class="rounded-square half-width">
+        <a href="about.html"><p>About</p></a>
+      </div>
+    </div> -->
+
+      <footer>
+        <p>&copy; E-Reader Channel 2023</p>
+      </footer>
+      </body>
+      </html>
