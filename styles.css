@@ -52,6 +52,8 @@ body {
     overflow: hidden; /* This ensures the image doesn't spill out of the square container */
     margin: 0 auto; /* centers the container */
     position: relative; /* establishes a stacking context for our image */
+    align-items: center; /* Vertically centers the child image */
+    justify-content: center; /* Horizontally centers the child image */
 }
 
 .product-thumbnail {
