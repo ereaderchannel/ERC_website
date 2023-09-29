@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px; /* Limiting the maximum width */
+    width: 90%;  /* Adjusts the width to 90% of the viewport */
+    margin: 0 auto;
+    padding: 2em 0;
+}
+
+.content-container {
+    max-width: 700px; /* Limiting the maximum width */
+    width: 90%;  /* Adjusts the width to 90% of the viewport */
+    margin: 0 auto;
+    padding: 2em 0;
+}
+
+.centered-title {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px; 
+}
+
+.grid-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    text-align: center;
+    width: 160px; 
+}
+
+.grid-item p {
+    margin-top: 15px;  /* Example value, adjust as needed */
+    margin-bottom: 0;
+}
+
+.image-container {
+    width: 160px;
+    height: 160px;
+    border-radius: 0px;
+    overflow: hidden; /* This ensures the image doesn't spill out of the square container */
+    margin: 0 auto; /* centers the container */
+    position: relative; /* establishes a stacking context for our image */
+}
+
+.product-thumbnail {
+    width: 100%; 
+    height: 100%; 
+    display: block;
+    object-fit: cover; /* Ensures the image covers the entire space without distortion */
+    object-position: center; /* Centers the image in case it's bigger than the container */
+}
+
+.grid-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Media query for screens smaller than 800px (like tablets) */
+@media only screen and (max-width: 800px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    }
+}
+
+/* Media query for screens smaller than 500px (like mobile devices) */
+@media only screen and (max-width: 500px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    }
+}
+
+
+.home-icon {
+    font-size: 24px;
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+    vertical-align: middle; 
+}
+
+.product-post {
+    background-color: #fff;
+    padding: 1.5em;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 400px;
+    border-radius: 0px;
+    margin-bottom: 1em;
+}
+
+/* Responsive iframe for video (keeps aspect ratio) */
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.website-link {
+    width: 500px;  /* Takes the full width of its container */
+    height: 50px;  /* Matches the height of the product squares */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;  /* Adds some vertical space above and below */
+    border-radius: 15px;  /* Gives the rounded corners */
+    background-color: #f5f5f5;  /* Example background color */
+    transition: background-color 0.3s;  /* Smooth transition for hover effects */
+}
+
+.website-link a {
+    text-decoration: none;  /* Removes the default underline of links */
+    color: #333;  /* Text color */
+    font-weight: bold;  /* Makes the text bold */
+    padding: 10px 20px;  /* Provides some padding to the link */
+}
+
+.website-link:hover {
+    background-color: #e5e5e5;  /* Slightly darker background when hovering */
+}
+
+
+.buy-button-container {
+    text-align: left;  /* Centers the button horizontally */
+    margin-top: 10px;  /* Adds some vertical space above the button */
+}
+
+.buy-button-container a {
+    display: inline-block;
+    background-color: #ff4500;  /* Bright orange color, you can adjust this */
+    color: #ffffff;  /* White text color */
+    text-decoration: none;  /* Removes the default underline of links */
+    padding: 5px 10px;  /* Provides padding around the text */
+    border-radius: 5px;  /* Rounded corners */
+    /* font-weight: bold;  Bold text */
+    transition: background-color 0.3s, transform 0.3s;  /* Smooth transition for hover effects */
+}
+
+.buy-button-container a:hover {
+    background-color: #ff6500;  /* Slightly brighter color on hover */
+    transform: scale(1.02);  /* Slightly enlarges the button on hover */
+}
