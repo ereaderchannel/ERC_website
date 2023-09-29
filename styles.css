@@ -156,3 +156,23 @@ iframe {
     background-color: #ff6500;  /* Slightly brighter color on hover */
     transform: scale(1.02);  /* Slightly enlarges the button on hover */
 }
+
+ul li {
+    margin-bottom: 10px; /* Adjust the value as per your preference */
+  }
+
+  @media (max-width: 480px) {
+    .half-width {
+        max-width: 100%;
+    }
+    
+    .full-width, .half-width {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .row {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+}
