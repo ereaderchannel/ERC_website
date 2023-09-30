@@ -180,7 +180,7 @@ ul li {
 }
 
 .centered-text {
-    width: 70%;   /* Set the width to 500px */
+    width: 75%;  
     margin: 0 auto;  /* This will center the div on the page horizontally */
     font-size: 18px;  /* A comfortable font-size for most readers, but feel free to adjust */
     line-height: 1.6;  /* Comfortable line spacing */
